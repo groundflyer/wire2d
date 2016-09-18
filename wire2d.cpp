@@ -40,14 +40,14 @@
 
 // helper function for logging
 void
-log(std::string message)
+log(const std::string && message)
 {
     std::cout << message << std::endl;
 }
 
 // helper function for error logging
 void
-error_log(std::string message)
+error_log(const std::string && message)
 {
     std::cerr << message << std::endl
 	      << "SDL Error:\n"
@@ -476,7 +476,7 @@ int main(int argc, char *argv[])
 	    for (int i = 0; i < timesteps; i++) {
 		masterLink.solve_p2();
 
-		for (auto link : links) {
+		for (auto & link : links) {
 		    // solve points first
 		    *link.p1 = solve_point(*link.p1, dt, g, ss);
 		    *link.p2 = solve_point(*link.p2, dt, g, ss);
